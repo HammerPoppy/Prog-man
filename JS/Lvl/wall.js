@@ -1,8 +1,6 @@
 Crafty.c("Wall", {
     init: function () {
         this.addComponent("2D, DOM, wall, Collision");
-        this.collision();
-        this.requires("solid");
         /*this.addComponent("topline")
          this.addComponent("righttop")
          this.addComponent("rightpimp")
@@ -23,5 +21,7 @@ Crafty.c("Wall", {
          this.addComponent("bottoleft")
          this.addComponent("toptobot")
          this.addComponent("botpimp");*/
+        this.collision();
+	this.requires("solid");
     }
 });

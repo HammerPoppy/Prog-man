@@ -29,13 +29,13 @@ Crafty.scene("loading", function () {
         live: [0, 0]
     })
 
-    Crafty.sprite(16, "Images (Dev)/Objects sprite.png", {
-        playerR: [4, 2],
+	Crafty.sprite(16, "Images (Dev)/Objects sprite.png", {
+		playerR: [4, 2],
         playerL: [3, 2]
-    })
+	})
 
-    Crafty.sprite(20, "Images (Dev)/Map/Score panel 21.png", {
-        scorepanel: [0, 0, 400, 60]
+    Crafty.sprite(Settings.poligon, "Images (Dev)/Map/ScorePanel.png", {
+        scorepanel: [0, 0, 320, 48]
     })
 
 

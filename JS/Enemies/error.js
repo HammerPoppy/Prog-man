@@ -2,20 +2,47 @@ Crafty.c("Error", {
     init: function () {
         this.addComponent("2D, DOM, error, Collision");
         this.bind("spawn", function () {
-            var random = (Math.random() * 100);
-            if (random > 0 && random <= 26) {
-                this.attr({x: 3 * Settings.poligon, y: 3 * Settings.poligon})
-            }
-            if (random > 26 && random <= 51) {
-                this.attr({x: 3 * Settings.poligon, y: 7 * Settings.poligon})
-            }
-            if (random > 51 && random <= 76) {
-                this.attr({x: 16 * Settings.poligon, y: 3 * Settings.poligon})
-            }
-            if (random > 76 && random <= 101) {
-                this.attr({x: 16 * Settings.poligon, y: 7 * Settings.poligon})
-            }
+        this.attr({x: 3 * Settings.poligon, y: 7 * Settings.poligon})
         })
         this.trigger("spawn");
+		var directions=[
+				{name: 'ErrorUp', x : 0, y : -1},
+				{name: 'ErrorRight', x : 1, y :0},
+				{name: 'ErrorLeft', x : -1, y : 0},
+				{name: 'ErrorDown', x : 0, y : 1}
+				];
+		this.bind("EnterFrame",function() {
+			var posx = this.x;
+		    if (this.y >59)
+				{
+					var direction = directions[0];
+					this.x += direction.x;
+					this.y += direction.y;
+				}
+			if (this.y < 61 && posx <= 319)
+				{
+					var direction = directions[1];
+					this.y += direction.y;
+					this.x += direction.x;
+				}
+			
+			if (this.x == 320 && this.y <= 139)
+				{
+					var direction = directions[3];
+					this.y += 2;
+					this.x += direction.x;
+				}
+			if (this.x == 320 && this.y >= 140)	
+			{
+				var direction = directions[2];
+					this.y += 1;
+					this.x += direction.x;
+			}
+		
+				
+				
+		})
+		
+		this.trigger("EnterFrame");
     },
 });
