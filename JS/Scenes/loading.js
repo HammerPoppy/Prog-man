@@ -1,7 +1,7 @@
 Crafty.scene("loading", function () {
 
 
-    Crafty.sprite(16, "Images (Dev)/Map/SpriteMap.png", {//Задаем спрайтам (спрайтам карты) в рисунке названия
+    Crafty.sprite(16, "Images/Map/SpriteMap.png", {//Задаем спрайтам (спрайтам карты) в рисунке названия
         topline: [0, 0],
         righttop: [1, 0],
         rightpimp: [2, 0],
@@ -25,21 +25,21 @@ Crafty.scene("loading", function () {
         wall: [0, 2]
     })
 
-    Crafty.sprite(16, "Images (Dev)/Map/live.png", {
+    Crafty.sprite(16, "Images/Map/live.png", {
         live: [0, 0]
     })
 
-    Crafty.sprite(16, "Images (Dev)/Objects sprite.png", {
+    Crafty.sprite(16, "Images/Objects sprite.png", {
         playerR: [4, 2],
         playerL: [3, 2]
     })
 
-    Crafty.sprite(20, "Images (Dev)/Map/Score panel 21.png", {
+    Crafty.sprite(20, "Images/Map/Score panel 21.png", {
         scorepanel: [0, 0, 400, 60]
     })
 
 
-    Crafty.sprite(16, "Images (Dev)/Objects sprite.png", {//Задаем спрайтам обьектов назваи
+    Crafty.sprite(16, "Images/Objects sprite.png", {//Задаем спрайтам обьектов назваи
         bug: [0, 1],
         java: [0, 0],
         cSharp: [1, 0],
