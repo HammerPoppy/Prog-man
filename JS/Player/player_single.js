@@ -23,23 +23,37 @@ Crafty.c("player", {
         });
         this.onHit("Php", function (e) {
             var data = e[0].obj;
-            Inc.lives += 1;
+            Inc.lives += 2;
             Crafty.trigger("updateLives");
             data.destroy();
             Crafty.trigger("spawnBonus");
         })
         this.onHit("C#", function (e) {
             var data = e[0].obj;
+            Inc.inv = 1;
+            /*this.alpha = 0.5;*/
             data.destroy();
+            setTimeout(function () {
+                Inc.inv = 0;
+            }, 9000)
             Crafty.trigger("spawnBonus");
         });
         this.onHit("DotNET", function (e) {
             var data = e[0].obj;
+            Inc.score += 100;
+            Crafty.trigger("updateScore");
             data.destroy();
             Crafty.trigger("spawnBonus");
         });
         this.onHit("Java", function (e) {
             var data = e[0].obj;
+            var l = Inc.lives;
+            Inc.lives += 10;
+            Crafty.trigger("updateLives");
+            setTimeout(function () {
+                Inc.lives = (l + 1);
+                Crafty.trigger("updateLives");
+            }, 9000)
             data.destroy();
             Crafty.trigger("spawnBonus");
         });
@@ -47,40 +61,73 @@ Crafty.c("player", {
          this.fourway(1);
          });*/
         //Столковение с монстром
-        this.onHit("Bug", function (e) {
+        this.onHit("BugL", function (e) {
             var data = e[0].obj;
-            Inc.lives -= 1;
-            Crafty.trigger("updateLives")
-            if (Inc.lives == 0) {
-                Crafty.scene("Score");
+            if (Inc.inv == 0) {
+                Inc.lives -= 1;
+                Crafty.trigger("updateLives")
+                setTimeout(function () {
+                    Inc.inv = 0;
+                }, 1000)
+                if (Inc.lives == 0) {
+                    Crafty.scene("Score");
+                }
+
+                data.trigger("spawn");
             }
-            data.destroy();
         })
-        this.onHit("Crash", function (e) {
+        this.onHit("BugR", function (e) {
             var data = e[0].obj;
-            Inc.lives -= 1;
-            Crafty.trigger("updateLives")
-            if (Inc.lives == 0) {
-                Crafty.scene("Score");
+            if (Inc.inv == 0) {
+                Inc.lives -= 1;
+                Crafty.trigger("updateLives")
+                Inc.inv = 1;
+                setTimeout(function () {
+                    Inc.inv = 0;
+                }, 1000)
+                if (Inc.lives <= 0) {
+                    Crafty.scene("Score");
+                }
+                data.trigger("spawn");
             }
-            data.destroy();
         })
+                /*data.x = 18 * Settings.poligon ;
+                 data.y = 9 * Settings.poligon*/;
+
         this.onHit("Error", function (e) {
             var data = e[0].obj;
-            Inc.lives -= 1;
-            Crafty.trigger("updateLives")
-            if (Inc.lives == 0) {
-                Crafty.scene("Score");
+            if (Inc.inv == 0) {
+                Inc.lives -= 1;
+                Crafty.trigger("updateLives")
+                setTimeout(function () {
+                    Inc.inv = 0;
+                }, 1000)
+                if (Inc.lives <= 0) {
+                    Crafty.scene("Score");
+                }
+                data.trigger("spawn");
             }
-            data.destroy();
-        })
+        });
+        this.onHit("Crash", function (e) {
+            var data = e[0].obj;
+            if (Inc.inv == 0) {
+                Inc.lives -= 2;
+                Crafty.trigger("updateLives");
+                setTimeout(function () {
+                    Inc.inv = 0;
+                }, 1000)
+                if (Inc.lives <= 0) {
+                    Crafty.scene("Score");
+                }
+            }
+            data.trigger("spawn")
+        });
         this.onHit("Ddos", function (e) {
             var data = e[0].obj;
             Inc.lives -= Inc.lives;
             Crafty.trigger("updateLives")
             Crafty.scene("Score");
-            data.destroy();
-        })
+        });
         this.onHit("solid", function (e) {
             var object = e[0].obj;
             // left

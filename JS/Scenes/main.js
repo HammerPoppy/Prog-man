@@ -36,8 +36,9 @@ Crafty.scene("main", function () {
     
     Crafty.trigger("spawnBonus");
 
-    Crafty.e("Bug");
+    Crafty.e("BugL");
+    Crafty.e("BugR");
     Crafty.e("Error");
     Crafty.e("Crash");
-    Crafty.e("Ddos");
+    /*Crafty.e("Ddos");*/
 });

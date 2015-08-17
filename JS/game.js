@@ -11,6 +11,7 @@ var Inc = {//Это я сделал переменную, по типу как S
     //Я создал ее, ведь не нашел лучше способа доступатся к данным и перезаписывать их из разных частей кода (разных документов)
     lives: Settings.lives,
     score: Settings.score,
+    inv: 0
 };
 window.onload = function () {
     Crafty.init(Settings.width * Settings.poligon, Settings.heigth * Settings.poligon);
