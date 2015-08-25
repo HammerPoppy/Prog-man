@@ -57,15 +57,14 @@ Crafty.c("player", {
             data.destroy();
             Crafty.trigger("spawnBonus");
         });
-        /*this.onHit("wall", function() {
-         this.fourway(1);
-         });*/
+
         //Столковение с монстром
         this.onHit("BugL", function (e) {
             var data = e[0].obj;
             if (Inc.inv == 0) {
                 Inc.lives -= 1;
                 Crafty.trigger("updateLives")
+                Inc.inv = 1;
                 setTimeout(function () {
                     Inc.inv = 0;
                 }, 1000)
@@ -91,13 +90,11 @@ Crafty.c("player", {
                 data.trigger("spawn");
             }
         })
-                /*data.x = 18 * Settings.poligon ;
-                 data.y = 9 * Settings.poligon*/;
-
         this.onHit("Error", function (e) {
             var data = e[0].obj;
             if (Inc.inv == 0) {
                 Inc.lives -= 1;
+                Inc.inv = 1
                 Crafty.trigger("updateLives")
                 setTimeout(function () {
                     Inc.inv = 0;
@@ -110,15 +107,16 @@ Crafty.c("player", {
         });
         this.onHit("Crash", function (e) {
             var data = e[0].obj;
-            if (Inc.inv == 0) {
-                Inc.lives -= 2;
-                Crafty.trigger("updateLives");
-                setTimeout(function () {
-                    Inc.inv = 0;
-                }, 1000)
-                if (Inc.lives <= 0) {
-                    Crafty.scene("Score");
-                }
+            Inc.lives -= 2;
+            if (Inc.lives <= 10) {
+                Inc.score += 500
+            }
+            Crafty.trigger("updateLives");
+            setTimeout(function () {
+                Inc.inv = 0;
+            }, 1000)
+            if (Inc.lives <= 0) {
+                Crafty.scene("Score");
             }
             data.trigger("spawn")
         });
@@ -186,9 +184,10 @@ Crafty.c("player", {
              this.stop().animate("walk_right");
              }
              });
-             
+
              this.animate("walk_left", 3, 2);
              this.animate("walk_right", 4, 2);*/
         });
     }
-});
+})
+;
